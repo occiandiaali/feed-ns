@@ -2,6 +2,7 @@
   import { Template } from "svelte-native/components";
   import { navigate } from "svelte-native";
   import { FeedService } from "~/services/feedService";
+  import { Screen } from "@nativescript/core";
 
   import Detail from "./Detail.svelte";
 
@@ -15,28 +16,29 @@
   }
 </script>
 
-<page>
-  <actionBar title="feed" flat="true">
+<page backgroundColor="#D3D3D3">
+  <actionBar flat="true" backgroundColor="#D3D3D3">
     <image src="~/assets/logo.png" height="48" marginTop="8" />
   </actionBar>
 
-  <stackLayout height="100%">
+  <stackLayout>
     <listView
-      height="100%"
+      height={Screen.mainScreen.heightDIPs}
       separatorColor="transparent"
       items={feedList}
       on:itemTap={onFeedTap}
     >
       <Template let:item>
         <gridLayout
-          height="320"
+          height="350"
           borderRadius="20"
-          borderWidth="0.5"
+          borderWidth="0.3"
           class="bg-secondary"
           rows="*, auto, auto, auto"
           columns="*"
-          margin="5 10"
-          padding="6"
+          margin="3 0"
+          padding="5"
+          backgroundColor="orangered"
         >
           <image row="0" margin="0" stretch="aspectFill" src={item.image} />
           <label
@@ -45,6 +47,7 @@
             fontWeight="700"
             class="text-primary"
             fontSize="18"
+            color="wheat"
             text={item.title}
           />
           <!-- <label
@@ -70,6 +73,7 @@
               class="text-secondary"
               fontSize="14"
               fontWeight="700"
+              color="wheat"
               text={item.title.slice(0, 14) + ".."}
             />
           </gridLayout>
